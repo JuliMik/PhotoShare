@@ -1,10 +1,18 @@
+from datetime import datetime
+from sqlalchemy import DateTime, func
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import declared_attr
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
+from typing import Annotated
 
 
 from utils import camel_case_to_snake_case
+
+timestamp_tz = Annotated[
+    datetime,
+    mapped_column(DateTime(timezone=True), server_default=func.now()),
+]
 
 
 class Base(DeclarativeBase):

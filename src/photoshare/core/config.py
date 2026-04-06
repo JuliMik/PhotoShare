@@ -1,5 +1,6 @@
 from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
 
 
 class RunConfig(BaseModel):
@@ -21,7 +22,10 @@ class DatabaseConfig(BaseSettings):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=("../.env.template", "../.env"),
+        env_file=[
+            Path(__file__).parent.parent / ".env.template",
+            Path(__file__).parent.parent / ".env",
+        ],
         case_sensitive=False,
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",

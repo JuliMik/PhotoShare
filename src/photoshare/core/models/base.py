@@ -7,7 +7,7 @@ from sqlalchemy.orm import mapped_column
 from typing import Annotated
 
 
-from utils import camel_case_to_snake_case
+from src.photoshare.utils import camel_case_to_snake_case
 
 timestamp_tz = Annotated[
     datetime,

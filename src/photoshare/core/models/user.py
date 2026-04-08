@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, String, Text, text
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
-from .base import Base, timestamp_tz
+from src.photoshare.core.models.base import Base, timestamp_tz
 from src.photoshare.schemas.enums import UserRole
 
 

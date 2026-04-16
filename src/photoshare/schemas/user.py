@@ -1,19 +1,23 @@
-from pydantic import BaseModel, ConfigDict
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from .enums import UserRole
 
 
 class UserBase(BaseModel):
-    email: str
+    email: EmailStr
+    username: str
 
 
 class UserCreate(UserBase):
-    pass
+    password: str = Field(min_length=8)
 
 
-class UserRead(UserBase):
+class UserResponse(UserBase):
     model_config = ConfigDict(
         from_attributes=True,
     )
     id: int
-    hashed_password: str
-    role: str
+    role: UserRole
     is_active: bool
+    created_at: datetime

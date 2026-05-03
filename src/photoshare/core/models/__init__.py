@@ -3,6 +3,6 @@ __all__ = (
     "Base",
     "User",
 )
-from .db_helper import db_helper
-from .base import Base
-from .user import User
+from src.photoshare.core.models.db_helper import db_helper
+from src.photoshare.core.models.base import Base
+from src.photoshare.core.models.user import User

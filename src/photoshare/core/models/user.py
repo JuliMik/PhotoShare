@@ -11,7 +11,12 @@ class User(Base, TimestampMixin):
     email: Mapped[str] = mapped_column(String(150), unique=True, nullable=False)
     username: Mapped[str] = mapped_column(String(32), unique=True, nullable=False)
     hashed_password: Mapped[str] = mapped_column(Text, nullable=False)
-    role: Mapped[str] = mapped_column(default=UserRole.USER)
+    role: Mapped[UserRole] = mapped_column(
+        Enum(UserRole),
+        default=UserRole.USER,
+        nullable=False,
+        server_default=UserRole.USER.value,
+    )
     is_active: Mapped[bool] = mapped_column(
         Boolean, default=True, server_default=text("TRUE"), nullable=False
     )
